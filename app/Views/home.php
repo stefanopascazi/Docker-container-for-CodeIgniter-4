@@ -4,7 +4,6 @@
 		<title>codeIgniter {4} starte</title>
 	</head>
 	<body>
-
 		<style {csp-style-nonce}>
 			div.logo {
 				height: 300px;

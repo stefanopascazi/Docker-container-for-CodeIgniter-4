@@ -1,11 +1,11 @@
 version: '3.1'
 
 services:
-  php:
+  php_applicazione_test:
     build:
       context: ./
     restart: always
-    container_name: php
+    container_name: php_applicazione_test
     volumes:  
       - ./public:/var/www/html/public
       - ./app/Config:/var/www/html/app/Config
@@ -20,10 +20,10 @@ services:
       - ./app/Views:/var/www/html/app/Views
       - ./app/Common.php:/var/www/html/app/Common.php
 
-  nginx:
+  nginx_applicazione_test:
     image: nginx:alpine
     restart: always
-    container_name: nginx
+    container_name: nginx_applicazione_test
     volumes:
       - ./public:/var/www/html/public
       - ./writable:/var/www/html/writable
@@ -31,19 +31,19 @@ services:
       - ./docker/nginx/sites/:/etc/nginx/sites-available
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d
     ports:
-      - "8081:80"
+      - "8094:80"
 
-  mysql:
+  mysql_applicazione_test:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    container_name: mysql
+    container_name: mysql_applicazione_test
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: test
       MYSQL_USER: user
       MYSQL_PASSWORD: password
     ports:
-        - 3309:3306
+        - 3001:3306
     volumes: 
       - ./docker/mysql:/docker-entrypoint-initdb.d

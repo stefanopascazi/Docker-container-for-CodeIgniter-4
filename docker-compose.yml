@@ -14,7 +14,7 @@ services:
       - ./app/Entities:/var/www/html/app/Entities
       - ./app/Filters:/var/www/html/app/Filters
       - ./app/Helpers:/var/www/html/app/Helpers
-      - ./app/Languages:/var/www/html/app/Languages
+      - ./app/Language:/var/www/html/app/Language
       - ./app/Models:/var/www/html/app/Models
       - ./app/ThirdParty:/var/www/html/app/ThirdParty
       - ./app/Views:/var/www/html/app/Views

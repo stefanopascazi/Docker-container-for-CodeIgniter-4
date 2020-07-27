@@ -1,11 +1,12 @@
 FROM php:fpm
 
 RUN ["apt-get", "update"]
+RUN ["apt-get", "install", "-y", "libicu-dev"]
 RUN ["apt-get", "install", "-y", "libzip-dev"]
 RUN ["apt-get", "install", "-y", "zip"]
 RUN ["apt-get", "install", "-y", "unzip"]
-RUN ["apt-get", "install", "-y", "libxml2-dev"]
-RUN ["docker-php-ext-install", "soap"]
+RUN ["docker-php-ext-install", "intl"]
+RUN ["docker-php-ext-configure", "intl"]
 RUN ["docker-php-ext-configure", "zip"]
 RUN ["docker-php-ext-install", "mysqli", "pdo", "pdo_mysql", "zip"]
 

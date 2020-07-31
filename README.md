@@ -1,2 +1,2 @@
-# Docker-image-for-CodeIgniter-4
-Docker Container, mariadb, nginx, php-fpm-alpine
+# Docker Container for CodeIgniter4
+... under construction ...

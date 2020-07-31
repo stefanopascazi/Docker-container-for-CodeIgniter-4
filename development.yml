@@ -1,11 +1,12 @@
 version: '3.1'
 
 services:
-  php_applicazione_test:
+  dev_codeigniter4_php:
     build:
       context: ./
+      dockerfile: ./Development
     restart: always
-    container_name: php_applicazione_test
+    container_name: dev_codeigniter4_php
     volumes:  
       - ./public:/var/www/html/public
       - ./app/Config:/var/www/html/app/Config
@@ -19,25 +20,26 @@ services:
       - ./app/ThirdParty:/var/www/html/app/ThirdParty
       - ./app/Views:/var/www/html/app/Views
       - ./app/Common.php:/var/www/html/app/Common.php
+      - ./.env:/var/www/html/.env
 
-  nginx_applicazione_test:
+  dev_codeigniter4_nginx:
     image: nginx:alpine
     restart: always
-    container_name: nginx_applicazione_test
+    container_name: dev_codeigniter4_nginx
     volumes:
       - ./public:/var/www/html/public
       - ./writable:/var/www/html/writable
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/sites/:/etc/nginx/sites-available
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+      - ./docker/dev/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/dev/nginx/sites/:/etc/nginx/sites-available
+      - ./docker/dev/nginx/conf.d/:/etc/nginx/conf.d
     ports:
       - "8094:80"
 
-  mysql_applicazione_test:
+  dev_codeigniter4_mysql:
     image: mysql:latest
     command: --default-authentication-plugin=mysql_native_password
     restart: always
-    container_name: mysql_applicazione_test
+    container_name: dev_codeigniter4_mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: test

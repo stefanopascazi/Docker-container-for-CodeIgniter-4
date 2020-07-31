@@ -15,14 +15,15 @@ RUN touch /usr/local/etc/php/conf.d/uploads.ini \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+WORKDIR /var/www/html
+
 COPY ./writable /var/www/html/writable
+COPY ./public /var/www/html/public
+COPY ./app /var/www/html/app
+COPY ./.env.production /var/www/html/.env
 
-## Install codeIgniter Dependecies
-COPY ./composer.json /var/www/html/composer.json
-RUN cd /var/www/html/ && composer update /var/www/html/ --no-dev --ignore-platform-reqs "vendor/*"
+RUN composer require codeigniter4/framework --ignore-platform-reqs
 
-RUN cd /var/www/html/
-#RUN ["chmod", "-R", "777", "writable/"]
 RUN ["chown", "-R", "www-data:www-data", "/var/www/html/"]
 ########################################
 
